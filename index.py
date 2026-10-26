@@ -1,105 +1,86 @@
 '''
-19/10/26
+26/10/26
 Faculdade Municipal de Palhoça (FMP)
 Tecnologia em Análise e Desenvolvimento de Sistemas
 Programação Estruturada
 Docente: Daniela Amorim  
 Discente: Jean Douglas Toledo Rodrigues Junior (jean.rodrigues@aluno.fmpsc.edu.br)
 
-Lista Laço de Repetição
+EAD - Lista 2 - Laço de Repetição
 '''
-print(f"Exercício 1. Desenvolver um algoritmo que leia a altura de 15 pessoas. Este programa deverá calcular e mostrar:")
-print(f"a. A menor altura do grupo;")
-print(f"b. A maior altura do grupo;")
-menorAltura = 0
-maiorAltura = 0
-for i in range (1, 16):
-    altura = float(input(f"Digite a {i}ª altura (em metros): "))
-    if (i == 1):
-        menorAltura = altura
-        maiorAltura = altura
+print("Exercício 1. Escrever um algoritmo que leia um número n que indica quantos valores devem ser lidos a seguir.")
+print("Para cada número lido, mostre uma tabela contendo o valor lido e o fatorial deste valor.\n")
+
+quantidade = int(input("Quantos números deseja digitar? "))
+lista = []
+
+for i in range(quantidade):
+    numero_digitado = int(input("Digite o {i}º número: "))
+    lista.append(numero_digitado)
+
+print(f"\nLista de números: {lista}")
+print("\n--- Tabela de Fatoriais ---")
+
+for num in lista:
+    resultado = 1
+    sentenca = f"{num}! = "
+    
+    if num == 0:
+        sentenca += "1 = 1"
     else:
-        if (altura < menorAltura):
-            menorAltura = altura
-        elif (altura >= maiorAltura):
-            maiorAltura = altura
-print(f"Maior Altura: ", maiorAltura, " metros")
-print(f"Menor Altura: ", menorAltura, " metros")
+        for k in range(num, 0, -1):
+            resultado *= k
+            if k != 1:
+                sentenca += f"{k} x "
+            else:
+                sentenca += f"{k} = {resultado}"
+                
+    print(sentenca)
 
-print(f"\nExercício 2. Escrever um algoritmo que gera e escreve os números ímpares entre 100 e 200.")
-for i in range(100, 201):
-    if i % 2 != 0:
-        print(i)
+print(f"Exercício 2. Escrever um algoritmo que leia uma quantidade de números que deve ser lidos e conte quantos deles estão nos seguintes intervalos: [0,25], [26,50], [51,75] e [76,100].")
+quantidade = int(input("Quantos números deseja digitar? "))
+lista = []
 
-print(f"\nExercício 3. Escreva um algoritmo que leia um valor inicial A e imprima a sequência de valores do cálculo de A! e o seu resultado. Ex: 5! = 5 X 4 X 3 X 2 X 1 = 120")
-numero = int(input("Digite o número: "))
-sentenca = (f"{numero}! = ")
-resultado = 1
+for i in range(quantidade):
+    numero_digitado = int(input("Digite o {i}º número: "))
+    lista.append(numero_digitado)
 
-for i in range (numero, 0, -1):
-    resultado = resultado * i
-    if i != 1:
-        sentenca = sentenca + str(i) + " x "
-    else:
-        sentenca = sentenca + str(i) + " = " + str(resultado)
-print(sentenca)
+print(f"\nLista de números: {lista}")
 
-print(f"\nExercício 4. Escrever um algoritmo que lê 5 valores para a, um de cada vez, e conta quantos destes valores são negativos.")
-quantNegativo = 0
-for i in range (1, 6):
-    a = float(input(f"Digite o {i}º valor de a: "))
-    if a < 0:
-        quantNegativo = quantNegativo + 1
-print(f"A quantidade de números negativos é: ", quantNegativo)
+if num < 0:
+    print(f"O número deve ser positivo")
+else:
+    somaIntervalo1 = 0
+    somaIntervalo2 = 0
+    somaIntervalo3 = 0
+    somaIntervalo4 = 0
+    for num in lista:
+        if num >= 0 or num <= 25:
+            somaIntervalo1 += 1
+        elif num > 25 or num <= 50:
+            somaIntervalo2 += 1
+        elif num >51 or num <= 75:
+            somaIntervalo3 += 1
+        else:
+            somaIntervalo4 += 1
+print(f"Intervalo 1 [0,25]: {somaIntervalo1}")
+print(f"Intervalo 2 [26,50]: {somaIntervalo2}")
+print(f"Intervalo 3 [51,75]: {somaIntervalo3}")
+print(f"Intervalo 4 [76,100]: {somaIntervalo4}")
+'''
+print(f"3. Faça um algoritmo que leia 10 números inteiros e calcule o somatório dos números negativos.")
 
-print(f"\nExercício 5. Em uma eleição presidencial existem quatro candidatos. Os votos são informados através de códigos. Os dados utilizados para a contagem dos votos obedecem à seguinte codificação:")
-print(f"a. 1,2,3,4 = voto para os respectivos candidatos;")
-print(f"a. 1,2,3,4 = voto para os respectivos candidatos;")
-print(f"b. 5 = voto nulo;")
-print(f"c. 6 = voto em branco;")
-print(f"d. Elabore um algoritmo que leia o código do candidato em um voto.")
-print(f"Calcule e escreva:")
-print(f"e. total de votos para cada candidato;")
-print(f"f. total de votos nulos;")
-print(f"g. total de votos em branco;")
-print(f"Faça um algoritmo para ler pelo menos 100 votos.")
-contCad1 = 0
-contCad2 = 0
-contCad3 = 0
-contCad4 = 0
-contBranco = 0
-contNulo = 0
-for i in range(1, 11):
-    voto = int(input("Voto: "))
-    if voto == 1:
-        contCad1 += 1
-    elif voto == 2:
-        contCad2 += 1
-    elif voto == 3:
-        contCad3 += 1
-    elif voto == 4:
-        contCad4 += 1
-    elif voto == 6:
-        contBranco += 1
-    else:
-        contNulo += contNulo + 1
-print(f"O candidado 1 totalizou: {contCad1} votos.")
-print(f"O candidado 2 totalizou: {contCad2} votos.")
-print(f"O candidado 3 totalizou: {contCad3} votos.")
-print(f"O candidado 4 totalizou: {contCad4} votos.")
-print(f"Voto em Branco totalizou: {contBranco} votos.")
-print(f"Voto em Nulo totalizou: {contNulo} votos.")
+print(f"4. Chico tem 1,50m e cresce 2 centímetros por ano, enquanto Juca tem 1,10m e cresce 3 centímetros por ano.")
+print(f"Construir um algoritmo que calcule e imprima quantos anos serão necessários para que Juca seja maior que Chico.")
 
-print(f"\nExercício 6. Solicite que o usuário insira seu nome completo e informe quantos caracteres ele possui.")
-nome = input("Digite o seu nome completo: ")
-quantCaracteres = len(nome)
-print(f"Seu nome tem:", quantCaracteres, " caracteres")
+print(f"5. Faça um algoritmo que leia vários números e informe quantos desses números entre 100 e 200 foram digitados.")
+print(f"Quando o valor 0 (zero) for lido o algoritmo deverá cessar sua execução.")
 
-print(f"\nExercício 7. Solicite que o usuário insira seu nome completo e apresente apenas o primeiro nome.")
-nomeCompleto = input("Digite seu nome completo: ")
-primeiroNome = nomeCompleto.split()[0]
-print(f"\na. Na vertical")
-for letra in primeiroNome:
-    print(letra)
-print(f"b. Na horizontal")
-print(primeiroNome)
+print(f"6. Uma rainha requisitou os serviços de um monge, o qual exigiu o pagamento em grãos de trigo da seguinte maneira:")
+print(f"- os grãos de trigo seriam dispostos em um tabuleiro de xadrez, de tal forma que a primeira casa do tabuleiro tivesse um grão, e as casas seguintes o dobro da anterior.")
+print(f"Construa um algoritmo que calcule quantos grãos de trigo a Rainha deverá pagar ao monge.")
+print(f"Um tabuleiro tem 64 casas.")
+
+print(f"7. Construa um algoritmo que leia uma quantidade indeterminada de números inteiros positivos e identifique qual foi o maior número digitado.")
+print(f"O final da série de números digitada deve ser indicado pela entrada de –1.")
+'''
